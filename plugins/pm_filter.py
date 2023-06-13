@@ -201,22 +201,22 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
     if imdb and imdb.get('poster'):
         try:
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(600)
             await hehe.delete()            
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
             hmm = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))           
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(600)
             await hmm.delete()            
         except Exception as e:
             logger.exception(e)
             cdp = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(600)
             await cdp.delete()
     else:
         abc = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-        await asyncio.sleep(IMDB_DELET_TIME)
+        await asyncio.sleep(600)
         await abc.delete()        
     if pmspoll:
         await msg.message.delete()
